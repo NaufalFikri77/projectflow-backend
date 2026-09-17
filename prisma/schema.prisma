@@ -1,0 +1,182 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String          @id @default(cuid())
+  email          String          @unique
+  name           String
+  password       String
+  avatarUrl      String?
+  role           Role
+  department     Department
+  tokenVersion   Int             @default(0)
+  isDeleted      Boolean         @default(false)
+  deletedAt      DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  attachments    Attachment[]
+  auditLogs      AuditLog[]
+  projectsOwned  Project[]       @relation("ProjectClient")
+  projectMembers ProjectMember[]
+  tasksAssigned  Task[]          @relation("TaskAssignee")
+
+  @@index([email])
+  @@index([role])
+  @@index([isDeleted])
+}
+
+model Project {
+  id          String          @id @default(cuid())
+  name        String
+  description String?
+  status      ProjectStatus   @default(ACTIVE)
+  clientId    String
+  isDeleted   Boolean         @default(false)
+  deletedAt   DateTime?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  client      User            @relation("ProjectClient", fields: [clientId], references: [id])
+  members     ProjectMember[]
+  tasks       Task[]
+
+  @@index([clientId])
+  @@index([status])
+  @@index([isDeleted])
+}
+
+model ProjectMember {
+  id        String   @id @default(cuid())
+  projectId String
+  userId    String
+  createdAt DateTime @default(now())
+  project   Project  @relation(fields: [projectId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([projectId, userId])
+  @@index([userId])
+  @@index([projectId])
+}
+
+model Task {
+  id            String           @id @default(cuid())
+  title         String
+  description   String?
+  status        TaskStatus       @default(TODO)
+  priority      Priority         @default(MEDIUM)
+  department    Department
+  dueDate       DateTime?
+  assigneeId    String?
+  projectId     String
+  clientVisible Boolean          @default(false)
+  version       Int              @default(1)
+  isDeleted     Boolean          @default(false)
+  deletedAt     DateTime?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  attachments   Attachment[]
+  auditLogs     AuditLog[]
+  assignee      User?            @relation("TaskAssignee", fields: [assigneeId], references: [id])
+  project       Project          @relation(fields: [projectId], references: [id])
+  dependedOnBy  TaskDependency[] @relation("TaskDependedOnBy")
+  dependencies  TaskDependency[] @relation("TaskDependencies")
+
+  @@index([projectId])
+  @@index([assigneeId])
+  @@index([status])
+  @@index([department])
+  @@index([priority])
+  @@index([isDeleted])
+  @@index([clientVisible])
+}
+
+model TaskDependency {
+  id              String   @id @default(cuid())
+  taskId          String
+  dependsOnTaskId String
+  createdAt       DateTime @default(now())
+  dependsOnTask   Task     @relation("TaskDependedOnBy", fields: [dependsOnTaskId], references: [id])
+  task            Task     @relation("TaskDependencies", fields: [taskId], references: [id])
+
+  @@unique([taskId, dependsOnTaskId])
+  @@index([taskId])
+  @@index([dependsOnTaskId])
+}
+
+model Attachment {
+  id           String    @id @default(cuid())
+  filename     String
+  fileUrl      String
+  mimeType     String?
+  fileSize     Int?
+  taskId       String
+  uploadedById String
+  isDeleted    Boolean   @default(false)
+  deletedAt    DateTime?
+  createdAt    DateTime  @default(now())
+  task         Task      @relation(fields: [taskId], references: [id])
+  uploadedBy   User      @relation(fields: [uploadedById], references: [id])
+
+  @@index([taskId])
+  @@index([uploadedById])
+  @@index([isDeleted])
+}
+
+model AuditLog {
+  id            String   @id @default(cuid())
+  taskId        String
+  userId        String
+  action        String
+  changedColumn String?
+  oldValue      String?
+  newValue      String?
+  createdAt     DateTime @default(now())
+  task          Task     @relation(fields: [taskId], references: [id])
+  user          User     @relation(fields: [userId], references: [id])
+
+  @@index([taskId])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+enum Role {
+  PRODUCT_MANAGER
+  UI_UX
+  FRONTEND
+  BACKEND
+  CLIENT
+}
+
+enum Department {
+  MANAGEMENT
+  DESIGN
+  FRONTEND
+  BACKEND
+  CLIENT
+}
+
+enum ProjectStatus {
+  ACTIVE
+  COMPLETED
+  ON_HOLD
+  CANCELLED
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  BLOCKED
+  DONE
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}

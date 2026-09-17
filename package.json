@@ -1,0 +1,39 @@
+{
+  "name": "projectflow-backend",
+  "version": "1.0.0",
+  "description": "ProjectFlow Backend - Bun + Hono + Prisma",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "typecheck": "bunx tsc --noEmit",
+    "db:generate": "bunx prisma generate",
+    "db:migrate": "bunx prisma migrate dev",
+    "db:deploy": "bunx prisma migrate deploy",
+    "db:push": "bunx prisma db push",
+    "db:seed": "bunx prisma db seed",
+    "db:studio": "bunx prisma studio",
+    "lint": "bunx @biomejs/biome check src/",
+    "lint:fix": "bunx @biomejs/biome check --write src/",
+    "format": "bunx @biomejs/biome format --write src/",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "hono": "^4.7.0",
+    "zod": "^3.24.0",
+    "prisma": "^6.0.0",
+    "@prisma/client": "^6.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "@nodewave/prisma-ezfilter": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.0",
+    "@biomejs/biome": "^1.9.0",
+    "typescript": "^5.7.0",
+    "@types/bun": "^1.2.0"
+  },
+  "prisma": {
+    "seed": "bun run prisma/seed.ts"
+  }
+}

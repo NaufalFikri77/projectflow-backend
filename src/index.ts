@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
+import { env } from './lib/env.js';
 import { errorHandler } from './middleware/error-handler.js';
 import { auditRoutes } from './routes/audit.routes.js';
 import { authRoutes } from './routes/auth.routes.js';
@@ -25,7 +26,6 @@ app.use('*', errorHandler);
 
 // Health check
 app.get('/health', (c) => c.json({ status: 'ok', timestamp: new Date().toISOString() }));
-app.get('/api/health', (c) => c.json({ status: 'ok', timestamp: new Date().toISOString() }));
 
 // API routes
 app.route('/api/auth', authRoutes);

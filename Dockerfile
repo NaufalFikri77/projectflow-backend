@@ -1,17 +1,20 @@
-FROM oven/bun:1
-
+FROM oven/bun:1.2 AS base
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN bun install
+# Install dependencies
+COPY package.json bun.lock* ./
+RUN bun install --frozen-lockfile --production
 
+# Copy prisma schema and generate client
 COPY prisma ./prisma
-COPY src ./src
-COPY tsconfig.json ./tsconfig.json
-
 RUN bunx prisma generate
-RUN bun run build
 
-EXPOSE 10000
+# Copy source code
+COPY src ./src
+COPY tsconfig.json ./
 
-CMD ["sh", "-c", "bun run db:deploy && bun run start"]
+# Expose port
+EXPOSE 3001
+
+# Start the server
+CMD ["sh", "-c", "bun run db:deploy && bun run src/server.ts"]

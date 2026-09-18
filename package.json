@@ -26,14 +26,14 @@
     "prisma": "^6.0.0",
     "@prisma/client": "^6.0.0",
     "jsonwebtoken": "^9.0.0",
-    "@nodewave/prisma-ezfilter": "^0.2.0"
+    "@nodewave/prisma-ezfilter": "^0.2.0",
+    "bcryptjs": "^3.0.2"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.0",
     "@biomejs/biome": "^1.9.0",
     "typescript": "^5.7.0",
-    "@types/bun": "^1.2.0",
-    "bcryptjs": "^3.0.2"
+    "@types/bun": "^1.2.0"
   },
   "prisma": {
     "seed": "bun run prisma/seed.ts"

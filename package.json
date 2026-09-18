@@ -2,7 +2,7 @@
   "name": "projectflow-backend",
   "version": "1.0.0",
   "description": "ProjectFlow Backend - Bun + Hono + Prisma",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "start": "bun run src/index.ts",

@@ -3,7 +3,7 @@
   "installCommand": "bun install",
   "outputDirectory": ".",
   "functions": {
-    "api/[[...route]].ts": {
+    "api/[...route].ts": {
       "maxDuration": 60
     }
   }

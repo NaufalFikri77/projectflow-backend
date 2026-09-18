@@ -1,6 +1,7 @@
 {
   "buildCommand": "bunx prisma generate && bunx prisma migrate deploy",
   "installCommand": "bun install",
+  "outputDirectory": ".",
   "functions": {
     "api/[[...route]].ts": {
       "maxDuration": 60

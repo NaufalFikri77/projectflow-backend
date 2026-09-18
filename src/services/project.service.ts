@@ -1,11 +1,11 @@
 import type { Prisma, ProjectStatus, Role } from '@prisma/client';
-import type { JwtPayload } from '../lib/auth';
-import { ForbiddenError, NotFoundError, ValidationError } from '../lib/errors';
-import { getPermissions } from '../lib/permissions';
-import { type QueryParams, buildPaginationMeta } from '../lib/query-helpers';
-import { projectRepository } from '../repositories/project.repository';
-import { userRepository } from '../repositories/user.repository';
-import type { CreateProjectInput, UpdateProjectInput } from '../schemas/project.schema';
+import type { JwtPayload } from '../lib/auth.js';
+import { ForbiddenError, NotFoundError, ValidationError } from '../lib/errors.js';
+import { getPermissions } from '../lib/permissions.js';
+import { type QueryParams, buildPaginationMeta } from '../lib/query-helpers.js';
+import { projectRepository } from '../repositories/project.repository.js';
+import { userRepository } from '../repositories/user.repository.js';
+import type { CreateProjectInput, UpdateProjectInput } from '../schemas/project.schema.js';
 
 export class ProjectService {
   async list(currentUser: JwtPayload, query: QueryParams) {

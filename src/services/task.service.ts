@@ -1,13 +1,13 @@
 import type { Department, Priority, Prisma, Role, TaskStatus } from '@prisma/client';
-import type { JwtPayload } from '../lib/auth';
-import { ConflictError, ForbiddenError, NotFoundError, ValidationError } from '../lib/errors';
-import { canChangeStatus, getPermissions, isValidStatusTransition } from '../lib/permissions';
-import { prisma } from '../lib/prisma';
-import { type QueryParams, buildPaginationMeta } from '../lib/query-helpers';
-import { dependencyRepository } from '../repositories/dependency.repository';
-import { projectRepository } from '../repositories/project.repository';
-import { taskRepository } from '../repositories/task.repository';
-import { userRepository } from '../repositories/user.repository';
+import type { JwtPayload } from '../lib/auth.js';
+import { ConflictError, ForbiddenError, NotFoundError, ValidationError } from '../lib/errors.js';
+import { canChangeStatus, getPermissions, isValidStatusTransition } from '../lib/permissions.js';
+import { prisma } from '../lib/prisma.js';
+import { type QueryParams, buildPaginationMeta } from '../lib/query-helpers.js';
+import { dependencyRepository } from '../repositories/dependency.repository.js';
+import { projectRepository } from '../repositories/project.repository.js';
+import { taskRepository } from '../repositories/task.repository.js';
+import { userRepository } from '../repositories/user.repository.js';
 import type {
   CreateTaskInput,
   UpdateTaskInput,

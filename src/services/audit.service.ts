@@ -1,10 +1,10 @@
 import type { Prisma, Role } from '@prisma/client';
-import type { JwtPayload } from '../lib/auth';
-import { ForbiddenError, NotFoundError } from '../lib/errors';
-import { getPermissions } from '../lib/permissions';
-import { type QueryParams, buildPaginationMeta } from '../lib/query-helpers';
-import { auditRepository } from '../repositories/audit.repository';
-import { taskRepository } from '../repositories/task.repository';
+import type { JwtPayload } from '../lib/auth.js';
+import { ForbiddenError, NotFoundError } from '../lib/errors.js';
+import { getPermissions } from '../lib/permissions.js';
+import { type QueryParams, buildPaginationMeta } from '../lib/query-helpers.js';
+import { auditRepository } from '../repositories/audit.repository.js';
+import { taskRepository } from '../repositories/task.repository.js';
 
 export class AuditService {
   async getByTaskId(taskId: string, currentUser: JwtPayload, query: QueryParams) {

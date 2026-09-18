@@ -1,12 +1,12 @@
 import { mkdir, unlink } from 'node:fs/promises';
 import type { Role } from '@prisma/client';
-import type { JwtPayload } from '../lib/auth';
-import { ForbiddenError, NotFoundError, ValidationError } from '../lib/errors';
-import { getPermissions } from '../lib/permissions';
-import { prisma } from '../lib/prisma';
-import { attachmentRepository } from '../repositories/attachment.repository';
-import { projectRepository } from '../repositories/project.repository';
-import { taskRepository } from '../repositories/task.repository';
+import type { JwtPayload } from '../lib/auth.js';
+import { ForbiddenError, NotFoundError, ValidationError } from '../lib/errors.js';
+import { getPermissions } from '../lib/permissions.js';
+import { prisma } from '../lib/prisma.js';
+import { attachmentRepository } from '../repositories/attachment.repository.js';
+import { projectRepository } from '../repositories/project.repository.js';
+import { taskRepository } from '../repositories/task.repository.js';
 
 export class AttachmentService {
   private readonly maxFileSize = 10 * 1024 * 1024;

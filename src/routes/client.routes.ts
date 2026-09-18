@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
-import { buildSuccessResponse, parseQueryParams } from '../lib/query-helpers';
-import { authMiddleware } from '../middleware/auth.middleware';
-import { clientService } from '../services/client.service';
+import { buildSuccessResponse, parseQueryParams } from '../lib/query-helpers.js';
+import { authMiddleware } from '../middleware/auth.middleware.js';
+import { clientService } from '../services/client.service.js';
 
 const clientDashboard = new Hono();
 

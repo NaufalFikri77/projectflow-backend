@@ -1,13 +1,13 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
-import { env } from './lib/env';
-import { errorHandler } from './middleware/error-handler';
-import { auditRoutes } from './routes/audit.routes';
-import { authRoutes } from './routes/auth.routes';
-import { clientRoutes } from './routes/client.routes';
-import { projectRoutes } from './routes/project.routes';
-import { taskRoutes } from './routes/task.routes';
+import { env } from './lib/env.js';
+import { errorHandler } from './middleware/error-handler.js';
+import { auditRoutes } from './routes/audit.routes.js';
+import { authRoutes } from './routes/auth.routes.js';
+import { clientRoutes } from './routes/client.routes.js';
+import { projectRoutes } from './routes/project.routes.js';
+import { taskRoutes } from './routes/task.routes.js';
 
 const app = new Hono();
 

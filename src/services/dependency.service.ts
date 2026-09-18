@@ -1,11 +1,11 @@
 import type { Role } from '@prisma/client';
-import type { JwtPayload } from '../lib/auth';
-import { ConflictError, ForbiddenError, NotFoundError, ValidationError } from '../lib/errors';
-import { getPermissions } from '../lib/permissions';
-import { prisma } from '../lib/prisma';
-import { dependencyRepository } from '../repositories/dependency.repository';
-import { projectRepository } from '../repositories/project.repository';
-import { taskRepository } from '../repositories/task.repository';
+import type { JwtPayload } from '../lib/auth.js';
+import { ConflictError, ForbiddenError, NotFoundError, ValidationError } from '../lib/errors.js';
+import { getPermissions } from '../lib/permissions.js';
+import { prisma } from '../lib/prisma.js';
+import { dependencyRepository } from '../repositories/dependency.repository.js';
+import { projectRepository } from '../repositories/project.repository.js';
+import { taskRepository } from '../repositories/task.repository.js';
 
 export class DependencyService {
   async getTaskDependencies(taskId: string, currentUser: JwtPayload) {

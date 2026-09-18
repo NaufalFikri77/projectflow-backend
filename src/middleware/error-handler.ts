@@ -1,6 +1,6 @@
 import type { Context, Next } from 'hono';
 import { ZodError } from 'zod';
-import { AppError } from '../lib/errors';
+import { AppError } from '../lib/errors.js';
 
 export async function errorHandler(c: Context, next: Next) {
   try {

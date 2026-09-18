@@ -1,7 +1,7 @@
 import type { Role } from '@prisma/client';
 import type { Context, Next } from 'hono';
-import { ForbiddenError } from '../lib/errors';
-import { type PermissionSet, getPermissions } from '../lib/permissions';
+import { ForbiddenError } from '../lib/errors.js';
+import { type PermissionSet, getPermissions } from '../lib/permissions.js';
 
 export function requireRole(...allowedRoles: Role[]) {
   return async (c: Context, next: Next) => {

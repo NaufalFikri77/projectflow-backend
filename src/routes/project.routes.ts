@@ -1,12 +1,12 @@
 import { Hono } from 'hono';
-import { buildSuccessResponse, parseQueryParams } from '../lib/query-helpers';
-import { authMiddleware } from '../middleware/auth.middleware';
+import { buildSuccessResponse, parseQueryParams } from '../lib/query-helpers.js';
+import { authMiddleware } from '../middleware/auth.middleware.js';
 import {
   addMemberSchema,
   createProjectSchema,
   updateProjectSchema,
-} from '../schemas/project.schema';
-import { projectService } from '../services/project.service';
+} from '../schemas/project.schema.js';
+import { projectService } from '../services/project.service.js';
 
 const projects = new Hono();
 

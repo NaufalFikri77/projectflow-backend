@@ -1,7 +1,7 @@
 import type { Context, Next } from 'hono';
-import { type JwtPayload, verifyToken } from '../lib/auth';
-import { UnauthorizedError } from '../lib/errors';
-import { userRepository } from '../repositories/user.repository';
+import { type JwtPayload, verifyToken } from '../lib/auth.js';
+import { UnauthorizedError } from '../lib/errors.js';
+import { userRepository } from '../repositories/user.repository.js';
 
 // Extend Hono context
 declare module 'hono' {

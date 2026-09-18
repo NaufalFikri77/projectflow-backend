@@ -1,8 +1,8 @@
 import { Hono } from 'hono';
-import { buildSuccessResponse } from '../lib/query-helpers';
-import { authMiddleware } from '../middleware/auth.middleware';
-import { loginSchema, registerSchema } from '../schemas/auth.schema';
-import { authService } from '../services/auth.service';
+import { buildSuccessResponse } from '../lib/query-helpers.js';
+import { authMiddleware } from '../middleware/auth.middleware.js';
+import { loginSchema, registerSchema } from '../schemas/auth.schema.js';
+import { authService } from '../services/auth.service.js';
 
 const auth = new Hono();
 

@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
-import { env } from './env';
+import { env } from './env.js';
 
 const JWT_EXPIRES_IN = '7d';
 

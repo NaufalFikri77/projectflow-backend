@@ -1,7 +1,7 @@
-import { comparePassword, generateToken, hashPassword } from '../lib/auth';
-import { ConflictError, NotFoundError, UnauthorizedError } from '../lib/errors';
-import { userRepository } from '../repositories/user.repository';
-import type { LoginInput, RegisterInput } from '../schemas/auth.schema';
+import { comparePassword, generateToken, hashPassword } from '../lib/auth.js';
+import { ConflictError, NotFoundError, UnauthorizedError } from '../lib/errors.js';
+import { userRepository } from '../repositories/user.repository.js';
+import type { LoginInput, RegisterInput } from '../schemas/auth.schema.js';
 
 export class AuthService {
   async register(input: RegisterInput) {

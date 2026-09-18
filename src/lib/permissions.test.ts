@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { canChangeStatus, isValidStatusTransition } from './permissions';
+import { canChangeStatus, isValidStatusTransition } from './permissions.js';
 
 describe('task status permissions', () => {
   test('prevents a product manager from completing an in-progress task', () => {

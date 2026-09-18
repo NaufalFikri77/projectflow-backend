@@ -1,16 +1,16 @@
 import { Hono } from 'hono';
-import { buildSuccessResponse, parseQueryParams } from '../lib/query-helpers';
-import { authMiddleware } from '../middleware/auth.middleware';
+import { buildSuccessResponse, parseQueryParams } from '../lib/query-helpers.js';
+import { authMiddleware } from '../middleware/auth.middleware.js';
 import {
   addDependencySchema,
   createTaskSchema,
   updateTaskSchema,
   updateTaskStatusSchema,
-} from '../schemas/task.schema';
-import { attachmentService } from '../services/attachment.service';
-import { auditService } from '../services/audit.service';
-import { dependencyService } from '../services/dependency.service';
-import { taskService } from '../services/task.service';
+} from '../schemas/task.schema.js';
+import { attachmentService } from '../services/attachment.service.js';
+import { auditService } from '../services/audit.service.js';
+import { dependencyService } from '../services/dependency.service.js';
+import { taskService } from '../services/task.service.js';
 
 const tasks = new Hono();
 

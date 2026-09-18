@@ -1,8 +1,8 @@
 import type { Prisma, ProjectStatus, TaskStatus } from '@prisma/client';
-import type { JwtPayload } from '../lib/auth';
-import { ForbiddenError, NotFoundError } from '../lib/errors';
-import { prisma } from '../lib/prisma';
-import { type QueryParams, buildPaginationMeta } from '../lib/query-helpers';
+import type { JwtPayload } from '../lib/auth.js';
+import { ForbiddenError, NotFoundError } from '../lib/errors.js';
+import { prisma } from '../lib/prisma.js';
+import { type QueryParams, buildPaginationMeta } from '../lib/query-helpers.js';
 
 export class ClientService {
   async getProjects(currentUser: JwtPayload, query: QueryParams) {

@@ -26,6 +26,7 @@ app.use('*', errorHandler);
 
 // Health check
 app.get('/health', (c) => c.json({ status: 'ok', timestamp: new Date().toISOString() }));
+app.get('/api/health', (c) => c.json({ status: 'ok', timestamp: new Date().toISOString() }));
 
 // API routes
 app.route('/api/auth', authRoutes);

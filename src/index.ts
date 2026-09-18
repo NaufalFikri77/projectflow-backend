@@ -1,7 +1,6 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
-import { env } from './lib/env.js';
 import { errorHandler } from './middleware/error-handler.js';
 import { auditRoutes } from './routes/audit.routes.js';
 import { authRoutes } from './routes/auth.routes.js';
@@ -61,11 +60,5 @@ app.notFound((c) =>
   ),
 );
 
-console.log(`🚀 ProjectFlow Backend running on port ${env.PORT}`);
-
-export default {
-  port: env.PORT,
-  fetch: app.fetch,
-};
-
 export { app };
+export default app;

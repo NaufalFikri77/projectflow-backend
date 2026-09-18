@@ -4,8 +4,8 @@
   "description": "ProjectFlow Backend - Bun + Hono + Prisma",
   "type": "module",
   "scripts": {
-    "dev": "bun run --hot src/index.ts",
-    "start": "bun run src/index.ts",
+    "dev": "bun run --hot src/server.ts",
+    "start": "bun run src/server.ts",
     "build": "bun build src/index.ts --outdir dist --target bun",
     "typecheck": "bunx tsc --noEmit",
     "db:generate": "bunx prisma generate",

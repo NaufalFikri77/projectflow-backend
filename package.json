@@ -17,7 +17,8 @@
     "lint": "bunx @biomejs/biome check src/",
     "lint:fix": "bunx @biomejs/biome check --write src/",
     "format": "bunx @biomejs/biome format --write src/",
-    "test": "bun test"
+    "test": "bun test",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "hono": "^4.7.0",
@@ -31,7 +32,8 @@
     "@types/jsonwebtoken": "^9.0.0",
     "@biomejs/biome": "^1.9.0",
     "typescript": "^5.7.0",
-    "@types/bun": "^1.2.0"
+    "@types/bun": "^1.2.0",
+    "bcryptjs": "^3.0.2"
   },
   "prisma": {
     "seed": "bun run prisma/seed.ts"

@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 const Role = {
   PRODUCT_MANAGER: 'PRODUCT_MANAGER',
@@ -38,7 +39,7 @@ const Priority = {
 const prisma = new PrismaClient();
 
 async function hashPassword(password: string): Promise<string> {
-  return await Bun.password.hash(password, { algorithm: 'bcrypt', cost: 10 });
+  return bcrypt.hash(password, 10);
 }
 
 async function main() {

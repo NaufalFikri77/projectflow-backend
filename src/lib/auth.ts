@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 import { env } from './env';
 
@@ -30,9 +31,9 @@ export function verifyToken(token: string): JwtPayload {
 }
 
 export async function hashPassword(password: string): Promise<string> {
-  return await Bun.password.hash(password, { algorithm: 'bcrypt', cost: 10 });
+  return bcrypt.hash(password, 10);
 }
 
 export async function comparePassword(password: string, hash: string): Promise<boolean> {
-  return await Bun.password.verify(password, hash);
+  return bcrypt.compare(password, hash);
 }
